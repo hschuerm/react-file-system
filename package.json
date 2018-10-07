@@ -56,5 +56,11 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "eslint-plugin-flowtype": "^2.50.3",
+    "moment": "^2.22.2",
+    "react-bootstrap": "^0.32.4",
+    "react-flip-move": "^3.0.2"
+  }
 }

@@ -1,23 +1,41 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
+  "plugins": [
+      "react"
   ],
   "env": {
-    "es6": true
+      "browser": true,
+      "node": true
   },
-  "plugins": [
-    "react"
-  ],
+  "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module"
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "modules": true
+      }
   },
   "rules": {
-    // don't force es6 functions to include space before paren
-    "space-before-function-paren": 0,
-
-    // allow specifying true explicitly for boolean props
-    "react/jsx-boolean-value": 0
+      "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-react": "error",
+      "no-unreachable": "error",
+      "react/prefer-es6-class": "warn",
+      "react/no-did-update-set-state": "error",
+      "react/no-multi-comp": "error",
+      "react/no-unused-prop-types": "error",
+      "react/no-will-update-set-state": "error",
+      "react/prop-types": "warn",
+      "react/require-render-return": "error",
+      "react/self-closing-comp": "warn",
+      "react/jsx-curly-spacing": "warn",
+      "react/jsx-key": "error",
+      "react/jsx-no-duplicate-props": "error",
+      "react/jsx-no-undef": "error",
+      "no-else-return": "error",
+      "no-duplicate-imports": ["error", { "includeExports": true }],
+      "no-undef": "error",
+      "semi": ["warn", "always"],
+      "jsx-a11y/href-no-hash": "warn"
   }
 }
