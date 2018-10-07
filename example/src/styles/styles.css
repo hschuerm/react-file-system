@@ -1,0 +1,37 @@
+/* ###################### tree ###################### */
+
+.folder-items {
+    padding-left: 20px;
+}
+
+.folder > .btn-group {
+    margin-bottom: 20px;
+}
+
+.folder > .btn-group > .file-system-folder {
+    margin-right: 10px;
+    border: 0;
+}
+
+.file-system-file {
+    border-left: 0;
+    border-right: 0;
+}
+
+.file-system-folder {
+    border-left: 0;
+    border-right: 0;
+}
+
+.file-system-file-header {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom-width: 3px;
+    font-weight: bold;
+}
+
+.changing { 
+    transition: all .2s ease-in-out;
+    transform: scale(10);
+}
