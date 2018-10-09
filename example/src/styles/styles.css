@@ -13,9 +13,24 @@
     border: 0;
 }
 
+.file-system-item {
+    padding: 5px;
+    height: 42px;
+}
+
+.file-system-item > .row{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .file-system-file {
     border-left: 0;
     border-right: 0;
+}
+
+.file-system-folder:focus {
+    outline: none;
 }
 
 .file-system-folder {
@@ -34,4 +49,39 @@
 .changing { 
     transition: all .2s ease-in-out;
     transform: scale(10);
+}
+
+.edit-item-form-group {
+    margin-bottom: 0;
+}
+
+.edit-item-input {
+    border-radius: 0;
+    height: 100%;
+}
+
+.item-icon-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.item-icon-container > .glyphicon {
+    top: 0px;
+}
+
+.item-icon-container > .preview-img {
+    max-width: 100%;
+    max-height: 20px;
+}
+
+.item-icon-container > .item-icon {
+    background-color: #ddd;
+    color: #777;
+    padding: 4px 3px;
+    border-radius: 6px;
+    width: 65px;
+    text-align: center;
 }

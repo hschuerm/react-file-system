@@ -12,7 +12,7 @@ const rootFolder = [
     },
     {
         "name": "zweiter ordner hier",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
         "updatedAt": new Date()
     },
     {
@@ -21,43 +21,50 @@ const rootFolder = [
     },
     {
         "name": "erster ordner hier",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "image/gif",
         "updatedAt": new Date()
     },
     {
         "name": "erster ordner hier 23er",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "text/html",
         "updatedAt": new Date()
     },
     {
         "name": "erster ordner hier 2e323e",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "application/test"
     },
     {
         "name": "erster ordner hier d23da",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "text/plain"
     },
     {
         "name": "erster ordner hier cqec",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "video/gif",
         "updatedAt": new Date()
     },
     {
         "name": "erster ordner hierwxaxw",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "audio/gif",
         "updatedAt": new Date()
     },
     {
         "name": "erster ordner hierwqd  ",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104"
     },
     {
         "name": "erster ordner hiercewc",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104",
+        "mimeType": "application/pdf"
     },
     {
         "name": "erster ordner hieraxax",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104"
     }
 ];
 
@@ -75,7 +82,7 @@ const test = [
 const first = [
     {
         "name": "erste json datei.json",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104"
     },
     {
         "name": "erster ordner hier",
@@ -83,7 +90,7 @@ const first = [
     },
     {
         "name": "Bild id -> 104",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
         "updatedAt": new Date()
     }
 ];
@@ -91,7 +98,7 @@ const first = [
 const second = [
     {
         "name": "zweite json datei.json",
-        "link": "http://files.vfl-schwimmen.de/104"
+        "src": "http://files.vfl-schwimmen.de/104"
     },
     {
         "name": "zweiter ordner hier",
@@ -99,7 +106,7 @@ const second = [
     },
     {
         "name": "Bild id -> 104",
-        "link": "http://files.vfl-schwimmen.de/104",
+        "src": "http://files.vfl-schwimmen.de/104",
         "updatedAt": new Date()
     }
 ];
@@ -142,7 +149,9 @@ export default class App extends Component {
     setCurrFolder(folder) {
         this.currFolder = folder;
         this.currFolder.onContextMenu = (evt, item) => {
-            this.currFolder.removeItemByName(item.name);
+            this.currFolder.rename(item.name)
+                .then(name => console.log(name))
+                .catch(err => console.error(err));
         };
         this.currFolder.onError = (err) => {
             console.error(err);
