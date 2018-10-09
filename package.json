@@ -1,6 +1,6 @@
 {
   "name": "react-file-system",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A react file system UI to manage files on a server.",
   "author": "hendrik-Sch",
   "license": "MIT",

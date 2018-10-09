@@ -111,12 +111,12 @@ export default class FolderController {
     }
 
     rename(oldName) {
-        if (!this.itemApi[oldName]) {
-            this.onError(new Error("item doesnt exists in dir"));
-            return false;
-        }
-        this.itemApi[oldName].setEditMode();
         return new Promise((resolve, reject) => {
+            if (!this.itemApi[oldName]) {
+                this.onError(new Error("item doesnt exists in dir"));
+                return false;
+            }
+            this.itemApi[oldName].setEditMode();
             this.onRenameFinished = resolve;
             this.onRenameAborted = reject;
         });
