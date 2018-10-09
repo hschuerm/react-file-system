@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactFileSystem from 'react-file-system';
 
-import 'moment/locale/de';
-
 import './styles/index';
 
 const rootFolder = [
@@ -188,6 +186,7 @@ export default class App extends Component {
                 <ReactFileSystem
                     display="animated"
                     rootFolderName="Dateiablage"
+                    local="de"
                     onRootFolderReady={this.onFolderSwitched.bind(this)}
                     onFolderSwitched={this.onFolderSwitched.bind(this)} />
             </div>

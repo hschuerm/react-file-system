@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListGroupItem, Glyphicon, Row, Col } from 'react-bootstrap';
+import { ListGroupItem, Row, Col } from 'react-bootstrap';
 import Moment from 'moment';
 
-import AnimatedFile from './file';
+import 'moment/locale/de';
+
 import EditItem from './editItem';
 import ItemIcon from './itemIcon';
+
+Moment.locale("de");
 
 class AnimatedItem extends Component {
     constructor() {

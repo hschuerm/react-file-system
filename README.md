@@ -15,12 +15,13 @@ npm install --save react-file-system
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-file-system'
+import ReactFileSystem from 'react-file-system'
 
-class Example extends Component {
+class MyFileSystem extends Component {
   render () {
     return (
-      <MyComponent />
+      <MyFileSystem
+        rootDirName="documents" />
     )
   }
 }
