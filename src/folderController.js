@@ -18,7 +18,7 @@ export default class FolderController {
         if (items) {
             this._setItems(items);
         }
-
+        this.rename = this.rename.bind(this);
     }
 
     _seperateFolderAndFiles() {
