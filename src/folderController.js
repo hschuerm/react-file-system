@@ -6,10 +6,14 @@ export default class FolderController {
 
         this.onContextMenu = () => { };
         this.onError = () => { };
+        this.onRenameFinished = () => { };
+        this.onRenameAborted = () => { };
 
         this._folderItems = null;
         this._fileItems = null;
         this._path = this._determineParentFolderName();
+
+        this.itemApi = {};
 
         if (items) {
             this._setItems(items);
@@ -39,8 +43,8 @@ export default class FolderController {
         return true;
     }
 
-    _modifyItem(index, modifiedItem) {
-        if (modifiedItem.name && !this._checkName(modifiedItem.name)) {
+    _modifyItem(index, modifiedItem, oldName) {
+        if (modifiedItem.name && !this.isValidRename(oldName, modifiedItem.name)) {
             this.onError(new Error("name allready exists in dir"));
             return false;
         }
@@ -61,6 +65,10 @@ export default class FolderController {
         this._items = items;
         this._seperateFolderAndFiles();
         this.refreshUI();
+    }
+
+    _addItemToApi(name, item) {
+        this.itemApi[name] = item;
     }
 
     getPath() {
@@ -102,11 +110,33 @@ export default class FolderController {
         this._setItems(items);
     }
 
+    rename(oldName) {
+        if (!this.itemApi[oldName]) {
+            this.onError(new Error("item doesnt exists in dir"));
+            return false;
+        }
+        this.itemApi[oldName].setEditMode();
+        return new Promise((resolve, reject) => {
+            this.onRenameFinished = resolve;
+            this.onRenameAborted = reject;
+        });
+    }
+
+    isValidRename(oldName, newName) {
+        if (oldName === newName) {
+            return true;
+        }
+        if (!newName || newName.length < 1) {
+            return false;
+        }
+        return this._checkName(newName);
+    }
+
     modifyItemByName(name, modifiedItem) {
         for (let i = 0; i < this._items.length; i++) {
             const item = this._items[i];
             if (item.name === name) {
-                this._modifyItem(i, modifiedItem);
+                this._modifyItem(i, modifiedItem, name);
                 return;
             }
         }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
 import Moment from 'moment';
 
-class BasicFile extends Component {
+class AnimatedFile extends Component {
     render() {
         const { name, updatedAt, nameSize, updatedAtSize } = this.props;
         return (
@@ -17,7 +17,7 @@ class BasicFile extends Component {
     }
 };
 
-BasicFile.propTypes = {
+AnimatedFile.propTypes = {
     name: PropTypes.string.isRequired,
     updatedAt: PropTypes.oneOfType([
         PropTypes.string,
@@ -27,4 +27,4 @@ BasicFile.propTypes = {
     updatedAtSize: PropTypes.object
 };
 
-export default BasicFile;
+export default AnimatedFile;
