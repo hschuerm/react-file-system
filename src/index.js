@@ -70,16 +70,15 @@ class ReactFileSystem extends Component {
 };
 
 ReactFileSystem.defaultProps = {
-    rootFolderName: "",
     display: "foldertop",
     tree: []
 };
 
 ReactFileSystem.propTypes = {
+    rootFolderName: PropTypes.string.isRequired,
+    
     tree: PropTypes.array,
-
     display: PropTypes.string,
-    rootFolderName: PropTypes.string,
     onRootFolderReady: PropTypes.func,
     onFolderSwitched: PropTypes.func
 };
