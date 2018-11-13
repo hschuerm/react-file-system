@@ -149,9 +149,10 @@ export default class FolderController {
                 let items = this.getItems();
                 items.splice(i, 1);
                 this._setItems(items);
-                return;
+                return name;
             }
         }
+        return false;
     }
 
     sortItems(sortingKey, ASC = true) {

@@ -11,12 +11,17 @@ import ItemIcon from './itemIcon';
 Moment.locale("de");
 
 class AnimatedItem extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             editMode: false
         };
+
+        this.isDir = false;
+        if (props.item.items) {
+            this.isDir = true;
+        }
     }
 
     componentDidMount() {
@@ -37,25 +42,63 @@ class AnimatedItem extends Component {
         folderController.onRenameAborted.call(folderController);
     }
 
-    render() {
-        const { item, folderController, switchFolder, iconSize, nameSize, updatedAtSize } = this.props;
+    getOnClick() {
+        let { item, switchFolder, onItemSelected } = this.props;
 
-        let onClick = item.items && !this.state.editMode ? () => switchFolder(item) : undefined;
+        if (this.state.editMode) {
+            return;
+        }
+
+        if (this.isDir) {
+            return () => switchFolder(item);
+        }
+
+        if (onItemSelected) {
+            return () => onItemSelected(item);
+        }
+    }
+
+    getItemSize() {
+        let { item } = this.props;
+
+        if (this.isDir || !item.size) {
+            return null;
+        }
+
+        if (item.size < 999) {
+            return item.size + " B"
+        }
+
+        if (item.size < 999999) {
+            return (item.size / 1000).toFixed(1) + " KB"
+        }
+
+        if (item.size < 999999999) {
+            return (item.size / 1000000).toFixed(1) + " MB"
+        }
+
+        return (item.size / 1000000000).toFixed(1) + " GB"
+    }
+
+    render() {
+        const { item, folderController, iconSize, nameSize, byteSize, updatedAtSize } = this.props;
+
         return (
             <ListGroupItem
-                className={"file-system-item file-system-" + (item.items ? "folder" : "file")}
-                onClick={onClick}
+                className={"file-system-item file-system-" + (this.isDir ? "folder" : "file")}
+                onClick={this.getOnClick.call(this)}
                 onContextMenu={evt => folderController.onContextMenu(evt, item)}>
 
                 <Row>
                     <Col {...iconSize}><ItemIcon {...item} /></Col>
-                    <Col {...nameSize}>{this.state.editMode ?
+                    <Col {...nameSize} className="item-name">{this.state.editMode ?
                         <EditItem defaultValue={item.name}
                             isValidRename={folderController.isValidRename.bind(folderController, item.name)}
                             onExit={this.onRenameCancel.bind(this)}
                             onSubmit={this.onRenameSubmit.bind(this)} />
                         : item.name}
                     </Col>
+                    <Col {...byteSize}>{this.getItemSize.call(this)}</Col>
                     <Col {...updatedAtSize}>{Moment(item.updatedAt).format("L LTS")}</Col>
                 </Row>
             </ListGroupItem>
@@ -71,7 +114,11 @@ AnimatedItem.propTypes = {
 
     iconSize: PropTypes.object,
     nameSize: PropTypes.object,
-    updatedAtSize: PropTypes.object
+    byteSize: PropTypes.object,
+    updatedAtSize: PropTypes.object,
+
+
+    onItemSelected: PropTypes.func,
 };
 
 export default AnimatedItem;

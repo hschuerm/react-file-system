@@ -17,15 +17,21 @@ class AnimatedFolder extends Component {
         };
 
         this.NameSize = {
-            xs: 5,
-            sm: 6,
-            md: 7
+            xs: 4,
+            sm: 4,
+            md: 5
+        };
+
+        this.ByteSize = {
+            xs: 2,
+            sm: 3,
+            md: 3
         };
 
         this.UpdatedAtSize = {
-            xs: 4,
-            sm: 4,
-            md: 4
+            xs: 3,
+            sm: 3,
+            md: 3
         };
     }
 
@@ -34,21 +40,26 @@ class AnimatedFolder extends Component {
             <Row>
                 <Col {...this.IconSize} />
                 <Col {...this.NameSize}>name</Col>
+                <Col {...this.ByteSize}>size</Col>
                 <Col {...this.UpdatedAtSize}>updated at</Col>
             </Row>
         </ListGroupItem>
     }
 
     createItem(item) {
-        let { folderController, switchFolder } = this.props;
+        let { folderController, switchFolder, onItemSelected } = this.props;
         return <AnimatedItem key={folderController.getPath() + item.name}
             onItemReady={api => folderController._addItemToApi(item.name, api)}
             item={item}
             folderController={folderController}
             switchFolder={switchFolder}
+
             iconSize={this.IconSize}
             nameSize={this.NameSize}
-            updatedAtSize={this.UpdatedAtSize} />
+            byteSize={this.ByteSize}
+            updatedAtSize={this.UpdatedAtSize}
+            
+            onItemSelected={onItemSelected} />
     }
 
     render() {
@@ -69,7 +80,8 @@ class AnimatedFolder extends Component {
 
 AnimatedFolder.propTypes = {
     folderController: PropTypes.object,
-    switchFolder: PropTypes.func
+    switchFolder: PropTypes.func,
+    onItemSelected: PropTypes.func
 };
 
 export default AnimatedFolder;

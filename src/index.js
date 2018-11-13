@@ -44,10 +44,11 @@ class ReactFileSystem extends Component {
     }
 
     getFolderType() {
-        const { display } = this.props;
+        const { display, onItemSelected } = this.props;
         let props = {
             folderController: this.state.currFolderController,
-            switchFolder: this.switchFolder.bind(this)
+            switchFolder: this.switchFolder.bind(this),
+            onItemSelected
         };
         switch (display.toLowerCase()) {
             case "tree": return <TreeFolder {...props} />
@@ -80,7 +81,8 @@ ReactFileSystem.propTypes = {
     tree: PropTypes.array,
     display: PropTypes.string,
     onRootFolderReady: PropTypes.func,
-    onFolderSwitched: PropTypes.func
+    onFolderSwitched: PropTypes.func,
+    onItemSelected: PropTypes.func
 };
 
 export default ReactFileSystem;

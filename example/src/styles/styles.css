@@ -13,16 +13,27 @@
     border: 0;
 }
 
+.file-system-history {
+    border-radius: 0;
+    margin: 5px 0;
+}
+
 .file-system-item {
     padding: 5px;
     height: 42px;
 }
 
-.file-system-item > .row{
+.file-system-item > .row {
     display: flex;
     align-items: center;
     height: 100%;
 }
+
+/* .file-system-item .item-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+} */
 
 .file-system-file {
     border-left: 0;

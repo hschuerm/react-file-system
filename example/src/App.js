@@ -11,23 +11,27 @@ const rootFolder = [
     {
         "name": "zweiter ordner hier",
         "src": "http://files.vfl-schwimmen.de/104",
-        "updatedAt": new Date()
+        "updatedAt": new Date(),
+        "size": 55
     },
     {
         "name": "test",
-        "items": []
+        "items": [],
+        "size": 4096
     },
     {
         "name": "erster ordner hier",
         "src": "http://files.vfl-schwimmen.de/104",
         "mimeType": "image/gif",
-        "updatedAt": new Date()
+        "updatedAt": new Date(),
+        "size": 43500000
     },
     {
         "name": "erster ordner hier 23er",
         "src": "http://files.vfl-schwimmen.de/104",
         "mimeType": "text/html",
-        "updatedAt": new Date()
+        "updatedAt": new Date(),
+        "size": 432343500000
     },
     {
         "name": "erster ordner hier 2e323e",
@@ -111,6 +115,7 @@ const second = [
 
 
 const DataProvider = function (path) {
+    // eslint-disable-next-line
     return new Promise(function (resolve, rejcet) {
         setTimeout(() => {
             switch (path) {
@@ -130,7 +135,7 @@ const DataProvider = function (path) {
                     resolve(second);
                     break;
 
-                default: rejcet("404: path not found")
+                default: rejcet("404: path not found");
             }
         }, 1);
     });
@@ -188,7 +193,8 @@ export default class App extends Component {
                     rootFolderName="Dateiablage"
                     local="de"
                     onRootFolderReady={this.onFolderSwitched.bind(this)}
-                    onFolderSwitched={this.onFolderSwitched.bind(this)} />
+                    onFolderSwitched={this.onFolderSwitched.bind(this)}
+                    onItemSelected={item => console.log(item)} />
             </div>
         );
     }
